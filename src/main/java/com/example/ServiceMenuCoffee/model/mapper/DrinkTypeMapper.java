@@ -9,4 +9,7 @@ import org.mapstruct.factory.Mappers;
 @Mapper
 public interface DrinkTypeMapper extends BaseMapper<DrinkType, DrinkTypeDto> {
     DrinkTypeMapper INSTANCE = Mappers.getMapper(DrinkTypeMapper.class);
+
+
+
 }

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api/v1/ingredientType")
+@RequestMapping("api/v2/ingredient")
 public class IngredientController {
     private final IngredientService service;
 

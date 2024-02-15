@@ -13,8 +13,8 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Table(name="tb_drink")
-
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Drink {
     @Id
@@ -26,14 +26,13 @@ public class Drink {
     LocalDateTime updatedDate;
     @Enumerated(EnumType.STRING)
     Status status;
-    @OneToOne
-    DrinkType drinkType;
 
+    @ManyToOne()
+    @JoinColumn(name="drink_type_id", referencedColumnName = "id")
+    DrinkType drinkType;
     @Column(name = "name")
     String name;
     int price;
-    @OneToMany
-    List<Ingredient> ingredient;
     int size;
 
 }

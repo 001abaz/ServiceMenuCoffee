@@ -1,24 +1,26 @@
 package com.example.ServiceMenuCoffee.model.dto;
 
 import com.example.ServiceMenuCoffee.model.enums.Status;
-import jakarta.persistence.Column;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDateTime;
 
 @Data
-@FieldDefaults(level = AccessLevel.PRIVATE)
+@NoArgsConstructor
 @AllArgsConstructor
-@Builder
-@RequiredArgsConstructor
-@ToString
-public class IngredientDto {
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class DrinkIngredientsDto {
     Long id;
     LocalDateTime createdDate;
     LocalDateTime updatedDate;
     Status status;
-    String name;
+
+    DrinkDto drinkDto;
+
+    IngredientDto ingredientDto;
 }
+

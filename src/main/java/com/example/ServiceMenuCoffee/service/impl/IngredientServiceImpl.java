@@ -2,8 +2,10 @@ package com.example.ServiceMenuCoffee.service.impl;
 
 import com.example.ServiceMenuCoffee.model.dto.DrinkDto;
 import com.example.ServiceMenuCoffee.model.dto.IngredientDto;
+import com.example.ServiceMenuCoffee.model.entity.Ingredient;
 import com.example.ServiceMenuCoffee.model.enums.Status;
 import com.example.ServiceMenuCoffee.model.mapper.DrinkMapper;
+import com.example.ServiceMenuCoffee.model.mapper.DrinkTypeMapper;
 import com.example.ServiceMenuCoffee.model.mapper.IngredientMapper;
 import com.example.ServiceMenuCoffee.model.request.CreateIngredientRequest;
 import com.example.ServiceMenuCoffee.repository.IngredientRepository;
@@ -20,8 +22,8 @@ public class IngredientServiceImpl implements IngredientService {
 
 
     @Override
-    public IngredientDto save(IngredientDto dto) {
-        return IngredientMapper.INSTANCE.toDto(repository.save(IngredientMapper.INSTANCE.toEntity(dto)));
+    public IngredientDto save(Ingredient entity) {
+        return IngredientMapper.INSTANCE.toDto(repository.save(entity));
     }
 
     @Override
@@ -36,14 +38,14 @@ public class IngredientServiceImpl implements IngredientService {
 
     @Override
     public IngredientDto create(CreateIngredientRequest request) {
-        IngredientDto dto = new IngredientDto();
+        Ingredient entity = Ingredient.builder()
+                .createdDate(LocalDateTime.now())
+                .updatedDate(LocalDateTime.now())
+                .status(Status.ACTIVE)
+                .name(request.getName())
+                .build();
 
-        dto.setCreatedDate(LocalDateTime.now());
-        dto.setUpdatedDate(LocalDateTime.now());
-        dto.setStatus(Status.ACTIVE);
-        dto.setName(request.getName());
-
-        return save(dto);
+        return save(entity);
     }
 
 }

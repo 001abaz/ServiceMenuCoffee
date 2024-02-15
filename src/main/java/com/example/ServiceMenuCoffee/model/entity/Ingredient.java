@@ -2,10 +2,7 @@ package com.example.ServiceMenuCoffee.model.entity;
 
 import com.example.ServiceMenuCoffee.model.enums.Status;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDateTime;
@@ -15,7 +12,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name="tb_ingredient")
-
+@Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Ingredient {
     @Id

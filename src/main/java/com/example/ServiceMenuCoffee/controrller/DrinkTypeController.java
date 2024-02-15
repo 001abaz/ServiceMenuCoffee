@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api/v1/drinkType")
+@RequestMapping("api/v2/drinkType")
 public class DrinkTypeController {
     private final DrinkTypeService service;
 
@@ -22,6 +22,10 @@ public class DrinkTypeController {
     @GetMapping("/getById")
     public ResponseEntity<?> getById(Long id){
         return ResponseEntity.ok(service.getById(id));
+    }
+    @GetMapping("/getByName")
+    public ResponseEntity<?> getById(String name){
+        return ResponseEntity.ok(service.getByName(name));
     }
     @GetMapping("/getAll")
     public ResponseEntity<?> getAll(){

@@ -2,10 +2,7 @@ package com.example.ServiceMenuCoffee.model.entity;
 
 import com.example.ServiceMenuCoffee.model.enums.Status;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDateTime;
@@ -14,6 +11,7 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Table(name="tb_drink_type")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class DrinkType {
@@ -24,6 +22,7 @@ public class DrinkType {
     LocalDateTime createdDate;
     @Column(name = "update_date")
     LocalDateTime updatedDate;
+    @Column(name = "status")
     @Enumerated(EnumType.STRING)
     Status status;
     @Column(name = "name")

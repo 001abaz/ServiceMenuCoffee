@@ -2,12 +2,14 @@ package com.example.ServiceMenuCoffee.service.impl;
 
 import com.example.ServiceMenuCoffee.model.dto.DrinkDto;
 import com.example.ServiceMenuCoffee.model.dto.DrinkTypeDto;
+import com.example.ServiceMenuCoffee.model.entity.DrinkType;
 import com.example.ServiceMenuCoffee.model.enums.Status;
 import com.example.ServiceMenuCoffee.model.mapper.DrinkMapper;
 import com.example.ServiceMenuCoffee.model.mapper.DrinkTypeMapper;
 import com.example.ServiceMenuCoffee.model.request.CreateDrinkTypeRequest;
 import com.example.ServiceMenuCoffee.repository.DrinkRepository;
 import com.example.ServiceMenuCoffee.repository.DrinkTypeRepository;
+import com.example.ServiceMenuCoffee.repository.projection.DrinkTypeResponse;
 import com.example.ServiceMenuCoffee.service.DrinkTypeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,8 +22,8 @@ public class DrinkTypServiceImpl implements DrinkTypeService {
     private final DrinkTypeRepository repository;
 
     @Override
-    public DrinkTypeDto save(DrinkTypeDto dto) {
-        return DrinkTypeMapper.INSTANCE.toDto(repository.save(DrinkTypeMapper.INSTANCE.toEntity(dto)));
+    public DrinkTypeDto save(DrinkType entity) {
+        return DrinkTypeMapper.INSTANCE.toDto(repository.save(entity));
     }
 
     @Override
@@ -36,12 +38,27 @@ public class DrinkTypServiceImpl implements DrinkTypeService {
 
     @Override
     public DrinkTypeDto create(CreateDrinkTypeRequest request){
-        DrinkTypeDto dto = new DrinkTypeDto();
-        dto.setCreatedDate(LocalDateTime.now());
-        dto.setUpdatedDate(LocalDateTime.now());
-        dto.setStatus(Status.ACTIVE);
-        dto.setName(request.getName());
+        DrinkType entity = DrinkType.builder()
+                .createdDate(LocalDateTime.now())
+                .updatedDate(LocalDateTime.now())
+                .status(Status.ACTIVE)
+                .name(request.getName())
+                .build();
 
-        return save(dto);
+        return save(entity);
+    }
+
+    @Override
+    public DrinkTypeDto getByName(String name) {
+
+//        DrinkTypeResponse response = repository.findByName1(name);
+//        DrinkType drinkType = DrinkType.builder()
+//                .id(response.getId())
+//                .name(response.getName())
+//                .createdDate(response.getCreatedDate())
+//                .updatedDate(response.getUpdatedDate())
+//                .status(response.getStatus())
+//                .build();
+        return DrinkTypeMapper.INSTANCE.toDto(repository.findByName(name));
     }
 }

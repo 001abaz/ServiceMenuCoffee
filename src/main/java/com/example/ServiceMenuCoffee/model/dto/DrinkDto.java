@@ -7,26 +7,28 @@ import jakarta.persistence.Column;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.ManyToOne;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDateTime;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@AllArgsConstructor
+@Builder
+@RequiredArgsConstructor
+@ToString
 public class DrinkDto {
     Long id;
     LocalDateTime createdDate;
     LocalDateTime updatedDate;
+    DrinkTypeDto drinkTypeDto; // Make sure it's DrinkTypeDto, not DrinkType
     Status status;
-    String drinkType;
     String name;
     int price;
-    String ingredient;
     int size;
+
+    public void setDrinkTypeDto(DrinkTypeDto drinkTypeDto) {
+        this.drinkTypeDto = drinkTypeDto;
+    }
 }
